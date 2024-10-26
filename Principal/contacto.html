@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="../stylesheet.css">
+</head>
+<body>
+    <header>
+        <br>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="formulario">
+                <h2 style="text-align: center;">Envianos tu consulta</h2>
+            <Form action="https://formspree.io/f/xdkokrop" method="post" >
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Escriba su nombre" minlength="2" maxlength="20" required>
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Escriba su apellido" minlength="2" maxlength="20" required>
+                <br>
+                <label for="email">Correo Electronico:</label>
+                <input type="email" id="email" name="email" placeholder="alguien@email.com" required>
+                <br>
+                <label for="telefono">Numero de telefono:</label>
+                <b>+54 9</b>
+                <input type="number" id="telefono" name="telefono" placeholder="11 5555-5555">
+                <br>
+                <label for="mensaje">Mensaje:</label>
+                <br>
+                <textarea rows="10" cols="70" id="mensaje" name="mensaje" placeholder="Escriba aqui su consulta"></textarea>
+                <br>
+                <input type="submit">
+            </Form>
+        </section>
+    </main>
+    <footer>
+        Proyecto Talento Tech 2024 ~ Pre-entrega
+    </footer>
+</body>
+</html>
