@@ -1,19 +1,32 @@
+document.addEventListener("DOMContentLoaded",()=>{
 var cardContainer=document.getElementById('card-container');
 
-for(var i=0;i<=10;i++){
-    var cardDiv=document.createElement('div');
+    fetch('https://fakestoreapi.com/products?limit=20')
+                .then(res=>res.json())
+                .then((json)=>{
+                    var products = json
+                    console.log(products);
+            
+            cardContainer.innerHTML="";
+            
+        products.forEach((product) => {
 
-    cardDiv.className='col-md-4';
+            const cardDiv = document.createElement("div")
 
-    cardDiv.innerHTML=`
-        <div class="card mb-4">
-          <img src="picsum.photos/300/200?random=${i}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    `
-    cardContainer.appendChild(cardDiv);
-}
+            cardDiv.className = 'col-lg-4 d-flex align-items-stretch';
+
+            cardDiv.innerHTML = `
+                <div class="card mx-auto">
+                    <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.title}</h5>
+                        <p class="card-text">${product.description}</p>
+                        <p class="card-price">${product.price}</>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            `;
+            cardContainer.appendChild(cardDiv);
+        });
+    });
+})
