@@ -4,8 +4,7 @@ var cardContainer=document.getElementById('card-container');
     fetch('https://fakestoreapi.com/products?limit=20')
                 .then(res=>res.json())
                 .then((json)=>{
-                    var products = json
-                    console.log(products);
+                    var products = json;
             
             cardContainer.innerHTML="";
             
@@ -21,12 +20,33 @@ var cardContainer=document.getElementById('card-container');
                     <div class="card-body">
                         <h5 class="card-title">${product.title}</h5>
                         <p class="card-text">${product.description}</p>
-                        <p class="card-price">${product.price}</>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <p class="card-price">Precio:$${product.price}</p>
+                        <button class="btn btn-success mt-auto">Agregar al carrito</button>
                     </div>
                 </div>
             `;
+
+            const botonAgregar =cardDiv.querySelector("button");
+            botonAgregar.addEventListener("click", ()=>
+                {
+                    agregarAlCarrito(product);
+                });
+                
+
             cardContainer.appendChild(cardDiv);
         });
-    });
+        
+    })
+    .catch((error)=>console.log("Error API",error));
+    
+    function agregarAlCarrito(product){
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(product);
+        localStorage.setItem("cart",JSON.stringify(cart));
+        alert(`${product.title} ha sido agregado correctamente al carrito.`);
+    }
+
+
+
+
 })
