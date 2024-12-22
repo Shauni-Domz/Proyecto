@@ -43,7 +43,11 @@ var cardContainer=document.getElementById('card-container');
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         cart.push(product);
         localStorage.setItem("cart",JSON.stringify(cart));
-        alert(`${product.title} ha sido agregado correctamente al carrito.`);
+        Swal.fire({
+            title: "Añadido correctamente",
+            text: `${product.title} ha sido agregado correctamente al carrito.`,
+            icon: "success"
+          });
     }
 
 
