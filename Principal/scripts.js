@@ -40,14 +40,28 @@ var cardContainer=document.getElementById('card-container');
     
     function agregarAlCarrito(product){
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        if (cart.some(item => item.id === product.id)) return;
-        cart.push({...product, count:1});
+        const existing = cart.find(item => item.id === product.id)
+
+        if (existing) {
+            existing.count += 1;
+        } else {
+            cart.push({...product, count:1});
+        }
         localStorage.setItem("cart",JSON.stringify(cart));
         Swal.fire({
             title: "Añadido correctamente",
             text: `${product.title} ha sido agregado correctamente al carrito.`,
             icon: "success"
           });
+
+        /*if (cart.some(item => item.id === product.id)) return;
+        cart.push({...product, count:1});
+        localStorage.setItem("cart",JSON.stringify(cart));
+        Swal.fire({
+            title: "Añadido correctamente",
+            text: `${product.title} ha sido agregado correctamente al carrito.`,
+            icon: "success"
+          });*/
     }
 
 

@@ -22,23 +22,31 @@ document.addEventListener("DOMContentLoaded",()=>{
         `<button type="button" class="plus" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
         <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0"/>
         </svg></button>
-        <span>${item.count}</span>
+        <span class="counter"></span>
         <button type="button" class="minus"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-minus-fill" viewBox="0 0 16 16">
         <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zM6 7.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1 0-1"/>
         </svg></button>`;
         const plus = cantidad.querySelector('.plus');
         const minus = cantidad.querySelector('.minus');
+        var counter = cantidad.querySelector('.counter');
+        counter.textContent = item.count;
         plus.addEventListener("click",()=>{
             item.count +=1;
+            counter.textContent = item.count;
             localStorage.setItem("cart",JSON.stringify(cartItemStorage));
+            location.reload();
         });
         minus.addEventListener("click",()=>{
+            if (item.count > 1){
             item.count -=1;
+            }
+            counter.textContent = item.count;
             localStorage.setItem("cart",JSON.stringify(cartItemStorage));
+            location.reload();
         });
         row.appendChild(cantidad);
 
-        var subTotal = item.price * 1; 
+        var subTotal = item.price * item.count; 
         var sCell = document.createElement('td');
         sCell.textContent =`$${subTotal}`;
         row.appendChild(sCell);
@@ -60,7 +68,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
     document.getElementById('empty').addEventListener('click', ()=>{
         localStorage.removeItem('cart');
-        window.location.href='carrito.html';
+        location.reload();
     });
     document.getElementById('finish').addEventListener('click', ()=>{
     Swal.fire({
