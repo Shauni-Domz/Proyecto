@@ -30,11 +30,11 @@ document.addEventListener("DOMContentLoaded",()=>{
         const minus = cantidad.querySelector('.minus');
         plus.addEventListener("click",()=>{
             item.count +=1;
-            localStorage.setItem("cart",JSON.stringify(cart));
+            localStorage.setItem("cart",JSON.stringify(cartItemStorage));
         });
         minus.addEventListener("click",()=>{
             item.count -=1;
-            localStorage.setItem("cart",JSON.stringify(cart));
+            localStorage.setItem("cart",JSON.stringify(cartItemStorage));
         });
         row.appendChild(cantidad);
 
