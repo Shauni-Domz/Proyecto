@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded",()=>{
         
         const row = document.createElement('tr');
         
+        var nombre = document.createElement('td');
+        nombre.textContent=item.title;
+        row.appendChild(nombre);
 
         var precio = document.createElement('td');
         precio.textContent="$"+item.price;
