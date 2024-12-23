@@ -40,7 +40,8 @@ var cardContainer=document.getElementById('card-container');
     
     function agregarAlCarrito(product){
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.push(product);
+        if (cart.some(item => item.id === product.id)) return;
+        cart.push({...product, count:1});
         localStorage.setItem("cart",JSON.stringify(cart));
         Swal.fire({
             title: "Añadido correctamente",
