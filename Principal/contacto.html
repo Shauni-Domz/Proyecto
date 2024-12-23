@@ -4,24 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IE+Guides&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../stylesheet.css">
 </head>
 <body>
     <header>
         <br>
-        <nav>
-            <ul>
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                
-            </ul>
+        <nav id="navbar" class="navbar navbar-expand-lg">
+            
         </nav>
     </header>
     <main>
         <section id="formulario">
-                <h2 style="text-align: center;">Envianos tu consulta</h2>
-            <Form action="https://formspree.io/f/xdkokrop" method="post" >
+            <h2 style="text-align: center;">Envianos tu consulta</h2>
+            <Form action="https://formspree.io/f/xdkokrop" method="post" onsubmit="return checkform(this)">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Escriba su nombre" minlength="2" maxlength="20" required>
                 <label for="apellido">Apellido:</label>
@@ -38,11 +36,27 @@
                 <br>
                 <textarea rows="10" cols="70" id="mensaje" name="mensaje" placeholder="Escriba aqui su consulta"></textarea>
                 <br>
+                
                 <input type="submit">
-            </Form>
+            </Form>`
         </section>
     </main>
     <footer>
         Proyecto Talento Tech 2024 ~ Entrega Final
+    <script src="nav.js"></script>
+    <script>
+        function checkform(form) {
+            var inputs = form.getElementsByTagName('input');
+            for (var i = 0; i < inputs.length; i++) {
+                if(inputs[i].hasAttribute("required")){
+                    if(inputs[i].value == ""){
+                        alert("Please fill all required fields");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>

@@ -7,7 +7,6 @@ var cardContainer=document.getElementById('card-container');
                     var products = json;
             
             cardContainer.innerHTML="";
-            
         products.forEach((product) => {
 
             const cardDiv = document.createElement("div")
@@ -54,3 +53,5 @@ var cardContainer=document.getElementById('card-container');
 
 
 })
+
+
